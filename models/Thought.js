@@ -1,6 +1,37 @@
 const { Schema, model, Types } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
+
+const ReactionSchema = new Schema(
+  {
+    // set custom id to avoid confusion with parent Thoughts' _id field
+    reactionId: {
+      type: Schema.Types.ObjectId,
+      default: () => new Types.ObjectId()
+    },
+    reactionBody: {
+      type: String,
+      required: 'You need to enter any thought',
+      minlength: 1,
+      maxlength: 280
+    },
+    username: {
+      type: String,
+      required: 'username is required'
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      get: createdAtVal => dateFormat(createdAtVal)
+    }
+  },
+  {
+    toJSON: {
+      getters: true
+    }
+  }
+);
+
 const ThoughtSchema = new Schema(
     {
       thoughtText: {
@@ -27,36 +58,6 @@ const ThoughtSchema = new Schema(
         getters: true
       },
       id: false
-    }
-  );
-
-const ReactionSchema = new Schema(
-    {
-      // set custom id to avoid confusion with parent Thoughts' _id field
-      reactionId: {
-        type: Schema.Types.ObjectId,
-        default: () => new Types.ObjectId()
-      },
-      reactionBody: {
-        type: String,
-        required: 'You need to enter any thought',
-        minlength: 1,
-        maxlength: 280
-      },
-      username: {
-        type: String,
-        required: 'username is required'
-      },
-      createdAt: {
-        type: Date,
-        default: Date.now,
-        get: createdAtVal => dateFormat(createdAtVal)
-      }
-    },
-    {
-      toJSON: {
-        getters: true
-      }
     }
   );
 

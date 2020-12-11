@@ -15,9 +15,9 @@ const UserSchema = new Schema({
     match: [/.+@.+\..+/, 'An valid Email must be entered'],
     required: 'Username is Required, please provide a username'
   },
-
-  friends: [UserSchema],
-  thoughts: [ThoughtSchema],
+  thoughts: [
+    { type: String, ref: 'Thought' }
+  ]
 },
 {
     toJSON: {
@@ -27,6 +27,12 @@ const UserSchema = new Schema({
     id: false
   }
 );
+
+//Adding a self-reference of the schema
+UserSchema.add({
+  friends:
+  [{ type: String, ref: 'User' }]
+})
 
 // get total count of friend
 UserSchema.virtual('friendCount').get(function() {
