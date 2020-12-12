@@ -142,20 +142,4 @@ for more information you can have a question via email [rogers.ramirez2008@gmail
 
 ### Screenshot 1
 
-![](./public/assets/images/image1.png)
-
-### Screenshot 2
-
-![](./public/assets/images/image2.png)
-
-### Screenshot 3
-
-![](./public/assets/images/image3.png)
-
-### Screenshot 4
-
-![](./public/assets/images/image4.png)
-
-### Screenshot 5
-
-![](./public/assets/images/image5.png)
+![](./public/assets/images/image1.jpg)
